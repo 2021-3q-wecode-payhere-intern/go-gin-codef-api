@@ -3,28 +3,13 @@ package service
 import (
 	"context"
 	"go-gin-codef-api/src/db"
+	"go-gin-codef-api/src/entity"
 	"go-gin-codef-api/src/properties"
 	"log"
 	"strconv"
 
 	"go.mongodb.org/mongo-driver/bson"
 )
-
-type DepositData struct {
-	ResCardCompany       string `json:"resCardCompany"`
-	ResDepositDate       string `json:"resDepositDate"`
-	ResMemberStoreNo     string `json:"resMemberStoreNo"`
-	ResOtherDeposit      string `json:"resOtherDeposit"`
-	ResPaymentAccount    string `json:"resPaymentAccount"`
-	ResSalesAmount       string `json:"resSalesAmount"`
-	CommEndDate          string `json:"commEndDate"`
-	ResAccountIn         string `json:"resAccountIn"`
-	ResSuspenseAmount    string `json:"resSuspenseAmount"`
-	ResBankName          string `json:"resBankName"`
-	ResSalesCount        string `json:"resSalesCount"`
-	CommMemberStoreGroup string `json:"commMemberStoreGroup"`
-	CommStartDate        string `json:"commStartDate"`
-}
 
 // 일자별 입금금액 합계
 func GetDepositByDailySum(startDate, endDate string) map[string]interface{} {
@@ -43,7 +28,7 @@ func GetDepositByDailySum(startDate, endDate string) map[string]interface{} {
 	var totalAmount int
 
 	for cursor.Next(context.Background()) {
-		var elem *DepositData
+		var elem *entity.DepositData
 
 		err := cursor.Decode(&elem)
 		if err != nil {
@@ -94,7 +79,7 @@ func GetDepositByCardSum(date string) map[string]interface{} {
 	var totalAmount int
 
 	for cursor.Next(context.Background()) {
-		var elem *DepositData
+		var elem *entity.DepositData
 
 		err := cursor.Decode(&elem)
 		if err != nil {
