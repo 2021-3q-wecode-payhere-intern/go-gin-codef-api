@@ -1,6 +1,6 @@
 FROM golang:1.16
 
-WORKDIR /app
+WORKDIR /app/go-gin-codef-api
 
 COPY . .
 
