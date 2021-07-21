@@ -29,7 +29,7 @@ func GetDepositByDaily(c *gin.Context) {
 	resultMap := service.GetDepositByDailySum(startDate, endDate)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.SUCCESS,
+		"message": message.RESPONSE_SUCCESS,
 		"data":    resultMap,
 	})
 }
@@ -48,7 +48,7 @@ func GetDepositByCard(c *gin.Context) {
 	resultMap := service.GetDepositByCardSum(date)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.SUCCESS,
+		"message": message.RESPONSE_SUCCESS,
 		"data":    resultMap,
 	})
 }

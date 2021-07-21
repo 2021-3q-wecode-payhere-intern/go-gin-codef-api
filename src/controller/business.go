@@ -65,7 +65,7 @@ func GetBusinessStatus(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.SUCCESS,
+		"message": message.RESPONSE_SUCCESS,
 		"data":    codefResult.Data[0],
 	})
 }
