@@ -1,7 +1,8 @@
 package controller
 
 import (
-	"go-gin-codef-api/src/message"
+	"go-gin-codef-api/src/http/request"
+	"go-gin-codef-api/src/http/response"
 	"go-gin-codef-api/src/properties"
 	"go-gin-codef-api/src/service"
 	"go-gin-codef-api/src/utils"
@@ -15,9 +16,9 @@ func GetDepositByDaily(c *gin.Context) {
 	year := c.Query("year")
 	month := c.Query("month")
 
-	if utils.IsEmptyByParam(year) || utils.IsEmptyByParam(month) {
+	if request.IsEmptyByParam(year) || request.IsEmptyByParam(month) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": message.RESPONSE_INVALID_REQUEST,
+			"message": response.RESPONSE_INVALID_REQUEST,
 		})
 		return
 	}
@@ -29,7 +30,7 @@ func GetDepositByDaily(c *gin.Context) {
 	resultMap := service.GetDepositByDailySum(startDate, endDate)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.RESPONSE_SUCCESS,
+		"message": response.RESPONSE_SUCCESS,
 		"data":    resultMap,
 	})
 }
@@ -38,9 +39,9 @@ func GetDepositByDaily(c *gin.Context) {
 func GetDepositByCard(c *gin.Context) {
 	date := c.Param("date")
 
-	if utils.IsEmptyByParam(date) {
+	if request.IsEmptyByParam(date) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": message.RESPONSE_INVALID_REQUEST,
+			"message": response.RESPONSE_INVALID_REQUEST,
 		})
 		return
 	}
@@ -48,7 +49,7 @@ func GetDepositByCard(c *gin.Context) {
 	resultMap := service.GetDepositByCardSum(date)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.RESPONSE_SUCCESS,
+		"message": response.RESPONSE_SUCCESS,
 		"data":    resultMap,
 	})
 }

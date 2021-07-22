@@ -1,4 +1,4 @@
-package message
+package response
 
 // response message
 const (

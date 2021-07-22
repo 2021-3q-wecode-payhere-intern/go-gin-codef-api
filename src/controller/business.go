@@ -1,7 +1,8 @@
 package controller
 
 import (
-	"go-gin-codef-api/src/message"
+	"go-gin-codef-api/src/http/request"
+	"go-gin-codef-api/src/http/response"
 	"go-gin-codef-api/src/properties"
 	"go-gin-codef-api/src/service"
 	"go-gin-codef-api/src/utils"
@@ -17,9 +18,9 @@ func GetBusinessStatus(c *gin.Context) {
 	bizNumber := c.Query("biz_number")
 	bizNumber = strings.ReplaceAll(bizNumber, "-", "")
 
-	if utils.IsEmptyByParam(bizNumber) {
+	if request.IsEmptyByParam(bizNumber) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": message.RESPONSE_INVALID_REQUEST,
+			"message": response.RESPONSE_INVALID_REQUEST,
 			"data":    map[string]string{},
 		})
 		return
@@ -58,14 +59,14 @@ func GetBusinessStatus(c *gin.Context) {
 
 	if len(codefResult.Data) <= 0 {
 		c.JSON(http.StatusOK, gin.H{
-			"message": message.RESPONSE_RESULT_EMPTY,
+			"message": response.RESPONSE_RESULT_EMPTY,
 			"data":    map[string]string{},
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": message.RESPONSE_SUCCESS,
+		"message": response.RESPONSE_SUCCESS,
 		"data":    codefResult.Data[0],
 	})
 }
