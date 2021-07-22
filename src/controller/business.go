@@ -57,7 +57,7 @@ func GetBusinessStatus(c *gin.Context) {
 		return
 	}
 
-	if len(codefResult.Data) <= 0 {
+	if len(codefResult.Data) == 0 {
 		c.JSON(http.StatusOK, gin.H{
 			"message": response.RESPONSE_RESULT_EMPTY,
 			"data":    map[string]string{},
