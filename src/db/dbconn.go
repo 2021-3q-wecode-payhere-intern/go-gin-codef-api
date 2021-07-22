@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"go-gin-codef-api/config"
+	"go-gin-codef-api/src/config"
 	"log"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func ConnectDB(mongoDBCollection string) (*mongo.Collection, error) {
+func MongoDBConnect(collectionName string) (*mongo.Collection, error) {
 	config := config.InitConfig()
 
 	MongoDBUrl := "mongodb://" + config.MongoDBHost + ":" + config.MongoDBPort
@@ -32,7 +32,7 @@ func ConnectDB(mongoDBCollection string) (*mongo.Collection, error) {
 		log.Fatal(err)
 	}
 
-	mongoDBClient := client.Database(config.MongoDBName).Collection(mongoDBCollection)
+	mongoDBClient := client.Database(config.MongoDBName).Collection(collectionName)
 
 	return mongoDBClient, err
 }
