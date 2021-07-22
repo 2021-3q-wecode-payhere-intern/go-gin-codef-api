@@ -38,10 +38,10 @@ func GetBusinessStatus(c *gin.Context) {
 	codefResult, err := service.GetBusinessStatus(properties.BUSINESS_STATUS_END_POINT, properties.TYPE_DEMO, parameter)
 	if err != nil {
 		_, fileName, line, _ := runtime.Caller(0)
-		msg := utils.GenerateErrorMsg(fileName, line)
+		errorMsg := utils.GenerateErrorMsg(fileName, line)
 
 		c.JSON(http.StatusServiceUnavailable, gin.H{
-			"message": msg,
+			"message": errorMsg,
 			"data":    map[string]string{},
 		})
 		return
