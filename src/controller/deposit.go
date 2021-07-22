@@ -18,7 +18,7 @@ func GetDepositByDaily(c *gin.Context) {
 
 	if request.IsEmptyByParam(year) || request.IsEmptyByParam(month) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": response.RESPONSE_INVALID_REQUEST,
+			"message": response.INVALID_REQUEST,
 		})
 		return
 	}
@@ -30,7 +30,7 @@ func GetDepositByDaily(c *gin.Context) {
 	resultMap := service.GetDepositByDailySum(startDate, endDate)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": response.RESPONSE_SUCCESS,
+		"message": response.SUCCESS,
 		"data":    resultMap,
 	})
 }
@@ -41,7 +41,7 @@ func GetDepositByCard(c *gin.Context) {
 
 	if request.IsEmptyByParam(date) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": response.RESPONSE_INVALID_REQUEST,
+			"message": response.INVALID_REQUEST,
 		})
 		return
 	}
@@ -49,7 +49,7 @@ func GetDepositByCard(c *gin.Context) {
 	resultMap := service.GetDepositByCardSum(date)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": response.RESPONSE_SUCCESS,
+		"message": response.SUCCESS,
 		"data":    resultMap,
 	})
 }

@@ -20,7 +20,7 @@ func GetBusinessStatus(c *gin.Context) {
 
 	if request.IsEmptyByParam(bizNumber) {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": response.RESPONSE_INVALID_REQUEST,
+			"message": response.INVALID_REQUEST,
 			"data":    map[string]string{},
 		})
 		return
@@ -59,14 +59,14 @@ func GetBusinessStatus(c *gin.Context) {
 
 	if len(codefResult.Data) == 0 {
 		c.JSON(http.StatusOK, gin.H{
-			"message": response.RESPONSE_RESULT_EMPTY,
+			"message": response.RESULT_EMPTY,
 			"data":    map[string]string{},
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": response.RESPONSE_SUCCESS,
+		"message": response.SUCCESS,
 		"data":    codefResult.Data[0],
 	})
 }
