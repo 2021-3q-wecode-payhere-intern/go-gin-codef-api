@@ -1,0 +1,93 @@
+definitions:
+  entity.CodefData:
+    properties:
+      code:
+        example: CF-00000
+        type: string
+      extraMessage:
+        type: string
+      message:
+        example: 성공
+        type: string
+      resBusinessStatus:
+        example: 부가가치세 일반과세자 입니다.
+        type: string
+      resClosingDate:
+        type: string
+      resCompanyIdentityNo:
+        example: "1231212345"
+        type: string
+      resTaxationTypeCode:
+        example: "1"
+        type: string
+      resTransferTaxTypeDate:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /business/status:
+    get:
+      description: 사업자번호로 매장의 상태를 조회한다.
+      parameters:
+      - description: 사업자번호
+        in: query
+        name: biz_number
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.CodefData'
+      summary: 휴폐업 상태 조회
+      tags:
+      - Business API
+  /deposit:
+    get:
+      consumes:
+      - application/json
+      description: 월단위 기준으로 일자별 입금금액을 조회한다.
+      parameters:
+      - description: 연도 - ex)2021
+        in: query
+        name: year
+        required: true
+        type: string
+      - description: 월 - ex)04
+        in: query
+        name: month
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 일자별 입금금액 조회
+      tags:
+      - Deposit API
+  /deposit/:date:
+    get:
+      consumes:
+      - application/json
+      description: 일자 기준으로 카드사별 입금금액을 조회한다.
+      parameters:
+      - description: 일자
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 카드사별 입금금액 조회
+      tags:
+      - Deposit API
+swagger: "2.0"

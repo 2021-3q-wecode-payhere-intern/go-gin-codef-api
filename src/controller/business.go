@@ -13,7 +13,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 휴폐업 상태 조회
+// @Tags        Business API
+// @Summary     휴폐업 상태 조회
+// @Description 사업자번호로 매장의 상태를 조회한다.
+// @Param       biz_number query string true "사업자번호"
+// @Router      /business/status [get]
+// @Success     200 {object} entity.CodefData
 func GetBusinessStatus(c *gin.Context) {
 	bizNumber := c.Query("biz_number")
 	bizNumber = strings.ReplaceAll(bizNumber, "-", "")
