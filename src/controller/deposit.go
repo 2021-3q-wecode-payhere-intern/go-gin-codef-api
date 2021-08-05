@@ -11,7 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 일자별 입금내역
+// @Tags        Deposit API
+// @Summary     일자별 입금금액 조회
+// @Description 월단위 기준으로 일자별 입금금액을 조회한다.
+// @Accept      json
+// @Produce     json
+// @Param       year query string true "연도 - ex)2021"
+// @Param       month query string true "월 - ex)04"
+// @Router      /deposit [get]
+// @Success     200 {string} string "OK"
 func GetDepositByDaily(c *gin.Context) {
 	year := c.Query("year")
 	month := c.Query("month")
@@ -35,7 +43,14 @@ func GetDepositByDaily(c *gin.Context) {
 	})
 }
 
-// 카드사별 입금내역 - 일자기준
+// @Tags        Deposit API
+// @Summary     카드사별 입금금액 조회
+// @Description 일자 기준으로 카드사별 입금금액을 조회한다.
+// @Accept      json
+// @Produce     json
+// @Param       date path string true "일자"
+// @Router      /deposit/:date [get]
+// @Success     200 {string} string "OK"
 func GetDepositByCard(c *gin.Context) {
 	date := c.Param("date")
 

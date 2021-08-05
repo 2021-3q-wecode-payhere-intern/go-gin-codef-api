@@ -6,14 +6,14 @@ type BusinessData struct {
 }
 
 type CodefData struct {
-	Code                   string `json:"code"`
-	Message                string `json:"message"`
-	ExtraMessage           string `json:"extraMessage"`
-	ResBusinessStatus      string `json:"resBusinessStatus"`
-	ResClosingDate         string `json:"resClosingDate"`
-	ResCompanyIdentityNo   string `json:"resCompanyIdentityNo"`
-	ResTaxationTypeCode    string `json:"resTaxationTypeCode"`
-	ResTransferTaxTypeDate string `json:"resTransferTaxTypeDate"`
+	Code                   string `json:"code" example:"CF-00000"`
+	Message                string `json:"message" example:"성공"`
+	ExtraMessage           string `json:"extraMessage" example:""`
+	ResBusinessStatus      string `json:"resBusinessStatus" example:"부가가치세 일반과세자 입니다."`
+	ResClosingDate         string `json:"resClosingDate" example:""`
+	ResCompanyIdentityNo   string `json:"resCompanyIdentityNo" example:"1231212345"`
+	ResTaxationTypeCode    string `json:"resTaxationTypeCode" example:"1"`
+	ResTransferTaxTypeDate string `json:"resTransferTaxTypeDate" example:""`
 }
 
 type CodefResult struct {
